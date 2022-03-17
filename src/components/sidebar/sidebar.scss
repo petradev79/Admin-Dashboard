@@ -1,0 +1,90 @@
+@import '../../styles/variables.scss';
+
+.sidebar {
+  position: fixed;
+  width: 15%;
+  min-width: 25rem;
+  height: 100vh;
+  padding: 1rem 0;
+  border-right: 1px solid $color-grey-light;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__top {
+    // height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__logo {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $color-main;
+  }
+
+  // &__center {
+  //   ul {
+  //     border: 1px solid red;
+  //   }
+  // }
+
+  &__group {
+    // border: 1px solid red;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $color-text-light;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__bottom {
+    padding: 0 1rem;
+    display: flex;
+    gap: 1rem;
+    border: 1px solid red;
+  }
+
+  &__option {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid $color-text-light;
+    cursor: pointer;
+
+    &:nth-child(1) {
+      background-color: $color-grey-light;
+    }
+
+    &:nth-child(2) {
+      background-color: $color-text-dark;
+    }
+  }
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  // border: 1px solid red;
+  padding: 0.5rem 1rem;
+
+  span {
+    margin-left: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $color-text;
+  }
+
+  svg {
+    font-size: 2rem;
+    color: $color-text;
+  }
+}

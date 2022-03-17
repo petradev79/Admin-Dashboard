@@ -8,3 +8,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.app {
+  // display: flex;
+
+  &__container {
+    margin-left: max(25rem, 15%);
+  }
+}
+
+a {
+  text-decoration: none;
+}
