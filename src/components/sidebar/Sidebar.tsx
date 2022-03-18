@@ -1,15 +1,15 @@
 // import { Link } from 'react-router-dom';
 import SidebarLink from './SidebarLink';
 import { SvgIconProps } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import StoreIcon from '@mui/icons-material/Store';
-import InsertChartIcon from '@mui/icons-material/InsertChart';
-import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
+import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
+import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
+import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
+import SettingsApplicationsOutlinedIcon from '@mui/icons-material/SettingsApplicationsOutlined';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import SettingsSystemDaydreamOutlinedIcon from '@mui/icons-material/SettingsSystemDaydreamOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -27,7 +27,7 @@ const sidebarLinks = [
     links: [
       {
         linkTitle: 'Dashboard',
-        icon: <DashboardIcon />,
+        icon: <HomeWorkOutlinedIcon />,
         linkPath: '',
       },
     ],
@@ -37,22 +37,22 @@ const sidebarLinks = [
     links: [
       {
         linkTitle: 'Users',
-        icon: <PersonOutlineIcon />,
+        icon: <PersonOutlineOutlinedIcon />,
         linkPath: '/users',
       },
       {
         linkTitle: 'Products',
-        icon: <StoreIcon />,
+        icon: <StoreOutlinedIcon />,
         linkPath: '/products',
       },
       {
         linkTitle: 'Orders',
-        icon: <CreditCardIcon />,
+        icon: <CreditCardOutlinedIcon />,
         linkPath: '',
       },
       {
         linkTitle: 'Delivery',
-        icon: <LocalShippingIcon />,
+        icon: <LocalShippingOutlinedIcon />,
         linkPath: '',
       },
     ],
@@ -62,12 +62,12 @@ const sidebarLinks = [
     links: [
       {
         linkTitle: 'Stats',
-        icon: <InsertChartIcon />,
+        icon: <InsertChartOutlinedIcon />,
         linkPath: '',
       },
       {
         linkTitle: 'Notifications',
-        icon: <NotificationsNoneIcon />,
+        icon: <NotificationsNoneOutlinedIcon />,
         linkPath: '',
       },
     ],
@@ -87,7 +87,7 @@ const sidebarLinks = [
       },
       {
         linkTitle: 'Settings',
-        icon: <SettingsApplicationsIcon />,
+        icon: <SettingsApplicationsOutlinedIcon />,
         linkPath: '',
       },
     ],
@@ -102,7 +102,7 @@ const sidebarLinks = [
       },
       {
         linkTitle: 'Logout',
-        icon: <ExitToAppIcon />,
+        icon: <ExitToAppOutlinedIcon />,
         linkPath: '',
       },
     ],

@@ -2,9 +2,8 @@
 
 .sidebar {
   position: fixed;
-  width: 15%;
-  min-width: 25rem;
-  height: 100vh;
+  width: 25rem;
+  min-height: 100vh;
   padding: 1rem 0;
   border-right: 1px solid $color-grey-light;
 
@@ -29,21 +28,22 @@
 
   // &__center {
   //   ul {
-  //     border: 1px solid red;
+  //     // border: 1px solid red;
+  //     list-style: none;
   //   }
   // }
 
-  &__group {
-    // border: 1px solid red;
-    margin-bottom: 2rem;
-  }
+  // &__group {
+  //   border: 1px solid red;
+  //   // margin-bottom: 2rem;
+  // }
 
   &__title {
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.3rem;
+    // font-weight: bold;
     color: $color-text-light;
-    margin-left: 1rem;
-    margin-bottom: 0.5rem;
+    margin: 2rem 3rem 1rem;
+    // margin-bottom: 0.5rem;
   }
 
   &__bottom {
@@ -73,12 +73,17 @@
 .sidebar-link {
   display: flex;
   align-items: center;
-  // border: 1px solid red;
-  padding: 0.5rem 1rem;
+  margin: 0.3rem 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.3rem;
+
+  &:hover {
+    background-color: rgba($color-grey-dark, 0.05);
+  }
 
   span {
     margin-left: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: $color-text;
   }
@@ -86,5 +91,15 @@
   svg {
     font-size: 2rem;
     color: $color-text;
+  }
+}
+
+.active {
+  .sidebar-link {
+    background-color: rgba($color-main, 0.15);
+    span,
+    svg {
+      color: $color-main;
+    }
   }
 }
