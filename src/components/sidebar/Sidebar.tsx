@@ -132,10 +132,10 @@ const Sidebar: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div className='sidebar__bottom'>
+      {/* <div className='sidebar__bottom'>
         <div className='sidebar__option'></div>
         <div className='sidebar__option'></div>
-      </div>
+      </div> */}
     </aside>
   );
 };

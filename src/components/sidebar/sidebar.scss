@@ -4,15 +4,15 @@
   position: fixed;
   width: 25rem;
   min-height: 100vh;
-  padding: 1rem 0;
+  // padding: 1rem 0;
   border-right: 1px solid $color-grey-light;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
 
   &__top {
-    // height: 5rem;
+    height: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,28 +46,28 @@
     // margin-bottom: 0.5rem;
   }
 
-  &__bottom {
-    padding: 0 1rem;
-    display: flex;
-    gap: 1rem;
-    border: 1px solid red;
-  }
+  // &__bottom {
+  //   padding: 0 1rem;
+  //   display: flex;
+  //   gap: 1rem;
+  //   border: 1px solid red;
+  // }
 
-  &__option {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 0.5rem;
-    border: 1px solid $color-text-light;
-    cursor: pointer;
+  // &__option {
+  //   width: 2rem;
+  //   height: 2rem;
+  //   border-radius: 0.5rem;
+  //   border: 1px solid $color-text-light;
+  //   cursor: pointer;
 
-    &:nth-child(1) {
-      background-color: $color-grey-light;
-    }
+  //   &:nth-child(1) {
+  //     background-color: $color-grey-light;
+  //   }
 
-    &:nth-child(2) {
-      background-color: $color-text-dark;
-    }
-  }
+  //   &:nth-child(2) {
+  //     background-color: $color-text-dark;
+  //   }
+  // }
 }
 
 .sidebar-link {
