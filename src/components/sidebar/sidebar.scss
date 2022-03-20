@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/variables.module.scss';
 
 .sidebar {
   position: fixed;
@@ -76,6 +76,7 @@
   margin: 0.3rem 1.5rem;
   padding: 1rem 1.5rem;
   border-radius: 0.3rem;
+  color: $color-text;
 
   &:hover {
     background-color: rgba($color-grey-dark, 0.05);
@@ -85,12 +86,10 @@
     margin-left: 1rem;
     font-size: 1.5rem;
     font-weight: 600;
-    color: $color-text;
   }
 
   svg {
     font-size: 2rem;
-    color: $color-text;
   }
 }
 

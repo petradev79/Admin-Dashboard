@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/variables.module.scss';
 
 .navbar {
   height: 6rem;
@@ -16,7 +16,6 @@
   &__search {
     display: flex;
     align-items: center;
-    color: $color-text;
 
     svg {
       font-size: 2.5rem;
@@ -46,7 +45,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    color: $color-text;
 
     svg {
       font-size: 2.5rem;

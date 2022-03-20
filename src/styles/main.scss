@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-@import './variables.scss';
+@import './variables.module.scss';
 
 *,
 *::before,
@@ -17,15 +17,33 @@ html {
 
 body {
   font-size: 1.6rem;
+  color: $color-text;
 }
 
 .app {
-  // display: flex;
-
   &__container {
+    min-height: 100vh;
     margin-left: 25rem;
     background-color: $color-grey-light;
   }
+}
+
+.container {
+  max-width: 140rem;
+  margin-inline: auto;
+  padding: 3rem;
+}
+
+.widgets {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.base-component {
+  padding: 2rem;
+  box-shadow: -4px 4px 10px 1px rgba($color-black, 0.1);
+  border-radius: 5px;
+  background-color: $color-white;
 }
 
 a {

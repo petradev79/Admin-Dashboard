@@ -1,0 +1,77 @@
+@import '../../styles/variables.module.scss';
+
+.featured {
+  flex: 2;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+  }
+
+  &__body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  &__progressbar {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  &__title {
+    font-weight: 500;
+  }
+
+  &__amount {
+    font-size: 3rem;
+    font-weight: 600;
+    color: $color-text-dark;
+  }
+
+  &__desc {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.footer-item {
+  text-align: center;
+
+  &__title {
+    font-size: 1.4rem;
+  }
+
+  &__result {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: $color-text-dark;
+
+    &.positive {
+      color: $color-success;
+    }
+
+    &.negative {
+      color: $color-danger;
+    }
+  }
+}
