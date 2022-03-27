@@ -75,7 +75,8 @@ const data = [
 const Chart = () => {
   return (
     <div className='chart base-component'>
-      <ResponsiveContainer width='100%' height='100%'>
+      <h2 className='chart__title'>Year Revenue</h2>
+      <ResponsiveContainer width='100%' aspect={2 / 1}>
         <AreaChart
           width={730}
           height={250}

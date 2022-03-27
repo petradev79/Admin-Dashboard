@@ -7,11 +7,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 500;
-    }
   }
 
   &__body {
@@ -25,8 +20,8 @@
   }
 
   &__progressbar {
-    width: 20rem;
-    height: 20rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   &__title {

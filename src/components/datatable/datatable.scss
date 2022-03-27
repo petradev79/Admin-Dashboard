@@ -1,0 +1,45 @@
+@import '../../styles/variables.module.scss';
+
+.datatable {
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__container {
+    height: 400px;
+    width: 100%;
+  }
+
+  &__cell-img {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .MuiDataGrid-columnHeadersInner {
+    // display: flex;
+    // justify-content: space-between;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    // width: 100%;
+    color: $color-text-light;
+  }
+
+  // .MuiDataGrid-columnHeader--sortable {
+  //   flex: 1;MuiDataGrid-row
+  // }
+  .MuiDataGrid-row {
+    // display: flex;
+    // justify-content: space-between;
+    font-size: 1.6rem;
+    // width: 100%;
+    // border: 1px solid red;
+  }
+}

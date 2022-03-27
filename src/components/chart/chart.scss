@@ -3,6 +3,10 @@
 .chart {
   flex: 2;
 
+  &__title {
+    margin-bottom: 2rem;
+  }
+
   &__grid {
     stroke: darken($color-grey-light, 10);
   }

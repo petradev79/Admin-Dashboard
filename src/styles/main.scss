@@ -34,9 +34,14 @@ body {
   padding: 3rem;
 }
 
-.widgets {
+.flex-container {
   display: flex;
   gap: 2.5rem;
+}
+
+.flex-container-column {
+  @extend .flex-container;
+  flex-direction: column;
 }
 
 .base-component {
@@ -48,4 +53,10 @@ body {
 
 a {
   text-decoration: none;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: $color-text-dark;
 }

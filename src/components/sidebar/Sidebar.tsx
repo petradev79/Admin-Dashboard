@@ -26,7 +26,12 @@ const sidebarLinks = [
     groupTitle: 'MAIN',
     links: [
       {
-        linkTitle: 'Dashboard',
+        linkTitle: 'Analytics',
+        icon: <HomeWorkOutlinedIcon />,
+        linkPath: '',
+      },
+      {
+        linkTitle: 'Invoice',
         icon: <HomeWorkOutlinedIcon />,
         linkPath: '',
       },
