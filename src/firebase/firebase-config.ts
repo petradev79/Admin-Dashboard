@@ -3,7 +3,7 @@ import { getAnalytics } from 'firebase/analytics';
 import { getFirestore } from '@firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAwfIB4GXfJtDck3rkql2E5isaHrPOt4Hw',
+  apiKey: process.,
   authDomain: 'admin-dashboard-a5178.firebaseapp.com',
   projectId: 'admin-dashboard-a5178',
   storageBucket: 'admin-dashboard-a5178.appspot.com',
