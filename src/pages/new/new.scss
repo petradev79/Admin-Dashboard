@@ -1,3 +1,68 @@
-.new {
-  background-color: red;
+@import '../../styles/variables.module.scss';
+
+// .new {
+//   background-color: red;
+// }
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  // border: 1px solid red;
+  margin-inline: auto;
+  max-width: 80%;
+
+  &__left,
+  &__right {
+    flex: 1;
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      // font-size: 1.6rem;
+      color: $color-text-light;
+    }
+
+    input,
+    select {
+      padding: 1rem;
+      border: 1px solid $color-text-light;
+      background-color: transparent;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+
+    // border: 1px solid red;
+
+    .form__group {
+      flex: 0.5;
+    }
+
+    button {
+      flex: 0.25;
+    }
+  }
+
+  .form__left .MuiInputLabel-root {
+    color: $color-text-light;
+    font-size: 1.3rem;
+    // background-color: $color-white;
+  }
+
+  .MuiOutlinedInput-root {
+    font-size: 1.3rem;
+    color: $color-text;
+  }
 }
