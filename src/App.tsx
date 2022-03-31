@@ -1,6 +1,10 @@
 // import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+<<<<<<< HEAD
 import { db } from './firebase/firebase-config';
+=======
+// import { db } from './firebase/firebase-config';
+>>>>>>> e72c0a6b1bdc28ca9704a24f765232dc3cf199f7
 // import { collection, getDocs } from '@firebase/firestore';
 import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/sidebar/Sidebar';
