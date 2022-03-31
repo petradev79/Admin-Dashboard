@@ -1,10 +1,8 @@
 // import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-<<<<<<< HEAD
-import { db } from './firebase/firebase-config';
-=======
+import { useAuth } from './context/use-auth';
+
 // import { db } from './firebase/firebase-config';
->>>>>>> e72c0a6b1bdc28ca9704a24f765232dc3cf199f7
 // import { collection, getDocs } from '@firebase/firestore';
 import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/sidebar/Sidebar';
@@ -27,6 +25,7 @@ import './styles/main.scss';
 // };
 
 const App = () => {
+  const auth = useAuth();
   // const [transactions, setTransactions] = useState<transactionType[]>([]);
 
   // const login = async () => {};
@@ -55,28 +54,32 @@ const App = () => {
 
   return (
     <div className='app'>
-      <BrowserRouter>
-        <Sidebar />
-        <div className='app__container'>
-          <Navbar />
-          <Routes>
-            <Route path='/'>
-              <Route index element={<Home />} />
-              <Route path='login' element={<Login />} />
-              <Route path='users'>
-                <Route index element={<List />} />
-                <Route path=':userId' element={<Single />} />
-                <Route path='new' element={<New />} />
+      {!auth.user ? (
+        <Login />
+      ) : (
+        <BrowserRouter>
+          <Sidebar />
+          <div className='app__container'>
+            <Navbar />
+            <Routes>
+              <Route path='/'>
+                <Route index element={<Home />} />
+                <Route path='login' element={<Login />} />
+                <Route path='users'>
+                  <Route index element={<List />} />
+                  <Route path=':userId' element={<Single />} />
+                  <Route path='new' element={<New />} />
+                </Route>
+                <Route path='products'>
+                  <Route index element={<List />} />
+                  <Route path=':productId' element={<Single />} />
+                  <Route path='new' element={<New />} />
+                </Route>
               </Route>
-              <Route path='products'>
-                <Route index element={<List />} />
-                <Route path=':productId' element={<Single />} />
-                <Route path='new' element={<New />} />
-              </Route>
-            </Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      )}
     </div>
   );
 };

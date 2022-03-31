@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { transactionsCollectionRef } from '../../firebase/firebase-config';
-import { addDoc } from 'firebase/firestore';
+// import { transactionsCollectionRef } from '../../firebase/firebase-config';
+// import { addDoc } from 'firebase/firestore';
 import TextField from '@mui/material/TextField';
 import './new.scss';
 
@@ -25,8 +25,9 @@ const New = () => {
       type,
       status: 'pending',
     };
+    console.log(transaction);
 
-    await addDoc(transactionsCollectionRef, transaction);
+    // await addDoc(transactionsCollectionRef, transaction);
   };
 
   return (
@@ -43,7 +44,7 @@ const New = () => {
               // InputLabelProps={{ className: 'form__label' }}
               // InputLabelProps={{ style: { fontSize: '13px' } }}
               required
-              onChange={event => setName(event.target.value)}
+              onChange={(event) => setName(event.target.value)}
             />
 
             {/* <div className='form__group'>
@@ -55,7 +56,7 @@ const New = () => {
               <input
                 type='email'
                 placeholder='Email'
-                onChange={event => setEmail(event.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className='form__group'>
@@ -63,7 +64,7 @@ const New = () => {
               <input
                 type='text'
                 placeholder='Address'
-                onChange={event => setAddress(event.target.value)}
+                onChange={(event) => setAddress(event.target.value)}
               />
             </div>
             <div className='form__group'>
@@ -71,7 +72,7 @@ const New = () => {
               <input
                 type='text'
                 placeholder='City'
-                onChange={event => setCity(event.target.value)}
+                onChange={(event) => setCity(event.target.value)}
               />
             </div>
             <div className='form__group'>
@@ -79,7 +80,7 @@ const New = () => {
               <input
                 type='number'
                 placeholder='add amount'
-                onChange={event => setAmount(+event.target.value)}
+                onChange={(event) => setAmount(+event.target.value)}
               />
             </div>
           </div>
@@ -91,7 +92,7 @@ const New = () => {
                 id=''
                 cols={30}
                 rows={10}
-                onChange={event => setDescription(event.target.value)}
+                onChange={(event) => setDescription(event.target.value)}
               />
             </div>
             <div className='form__bottom'>
@@ -99,7 +100,7 @@ const New = () => {
                 <select
                   name='type'
                   id='type'
-                  onChange={event => setType(event.target.value)}
+                  onChange={(event) => setType(event.target.value)}
                 >
                   <option value='income'>Income</option>
                   <option value='expense'>Expense</option>

@@ -1,37 +1,42 @@
 import { useState } from 'react';
-
+import { useAuth } from '../../context/use-auth';
 // import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from '../../firebase/firebase-config';
+// import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+// import { auth } from '../../firebase/firebase-config';
 import './login.scss';
 
 const Login = () => {
-  const [login, setLogin] = useState<boolean>(false);
+  // const [login, setLogin] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  // const [error, setError] = useState<string>('');
   // const [loading, setLoading] = useState<boolean>(false);
   // const navigate = useNavigate();
+  const auth = useAuth();
 
   const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (error !== '') setError('');
-    setLogin(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then(cred => {
-        console.log(cred.user);
-        // navigate('/');
-        setEmail('');
-        setPassword('');
-      })
-      .catch(err => {
-        setError(err.message);
-      });
+    // if (error !== '') setError('');
+    // setLogin(true);
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then((cred) => {
+    //     console.log(cred.user);
+    //     // navigate('/');
+    //     setEmail('');
+    //     setPassword('');
+    //   })
+    //   .catch((err) => {
+    //     setError(err.message);
+    //   });
+    auth.signin(email, password);
   };
 
   const logoutHandler = () => {
-    signOut(auth);
+    // signOut(auth);
+    auth.signout();
   };
+
+  console.log(auth.user);
 
   return (
     <div className='login'>
@@ -43,7 +48,7 @@ const Login = () => {
           id='email'
           placeholder='Email'
           value={email}
-          onChange={event => setEmail(event.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
         />
         <input
           autoComplete='new-password'
@@ -52,14 +57,12 @@ const Login = () => {
           id='password'
           placeholder='password'
           value={password}
-          onChange={event => setPassword(event.target.value)}
+          onChange={(event) => setPassword(event.target.value)}
         />
 
-        <button type='submit' disabled={login}>
-          Log In
-        </button>
+        <button type='submit'>Log In</button>
       </form>
-      {error && <h1>{error}</h1>}
+      {/* {error && <h1>{error}</h1>} */}
     </div>
   );
 };

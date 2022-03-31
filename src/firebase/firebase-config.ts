@@ -1,9 +1,9 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getAnalytics } from 'firebase/analytics';
-import { getFirestore, collection } from '@firebase/firestore';
+// import { initializeApp } from 'firebase/app';
+// import { getAuth } from 'firebase/auth';
+// import { getAnalytics } from 'firebase/analytics';
+// import { getFirestore, collection } from '@firebase/firestore';
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
@@ -13,8 +13,8 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const analytics = getAnalytics(app);
-export const db = getFirestore();
-export const transactionsCollectionRef = collection(db, 'transactions');
+// const app = initializeApp(firebaseConfig);
+// export const auth = getAuth(app);
+// export const analytics = getAnalytics(app);
+// export const db = getFirestore();
+// export const transactionsCollectionRef = collection(db, 'transactions');
