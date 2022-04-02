@@ -1,38 +1,41 @@
 import { useState } from 'react';
-import { useAuth } from '../../context/use-auth';
-// import { useNavigate } from 'react-router-dom';
-// import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-// import { auth } from '../../firebase/firebase-config';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../context/auth';
+import {
+  TextField,
+  FormControl,
+  LinearProgress,
+  Box,
+  Button,
+  Alert,
+} from '@mui/material';
 import './login.scss';
 
 const Login = () => {
-  // const [login, setLogin] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  // const [error, setError] = useState<string>('');
-  // const [loading, setLoading] = useState<boolean>(false);
-  // const navigate = useNavigate();
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [focusedEmail, setFocusedEmail] = useState(false);
+  const [focusedPassword, setFocusedPassword] = useState(false);
+  const navigate = useNavigate();
   const auth = useAuth();
 
-  const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // if (error !== '') setError('');
-    // setLogin(true);
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((cred) => {
-    //     console.log(cred.user);
-    //     // navigate('/');
-    //     setEmail('');
-    //     setPassword('');
-    //   })
-    //   .catch((err) => {
-    //     setError(err.message);
-    //   });
-    auth.signin(email, password);
+
+    try {
+      setError('');
+      setLoading(true);
+      await auth.login(email, password);
+      navigate('/');
+    } catch {
+      setError('Failed to log in');
+    }
+    setLoading(false);
   };
 
   const logoutHandler = () => {
-    // signOut(auth);
     auth.signout();
   };
 
@@ -40,29 +43,60 @@ const Login = () => {
 
   return (
     <div className='login'>
-      <h2 onClick={logoutHandler}>Log In</h2>
-      <form onSubmit={loginHandler}>
-        <input
-          type='email'
-          name='email'
-          id='email'
-          placeholder='Email'
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <input
-          autoComplete='new-password'
-          type='password'
-          name='password'
-          id='password'
-          placeholder='password'
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+      {loading ? (
+        <Box sx={{ width: '100%', marginBottom: 'auto' }}>
+          <LinearProgress />
+        </Box>
+      ) : (
+        <div className='login__box base-component'>
+          <h2 onClick={logoutHandler} className='login__title'>
+            Log In
+          </h2>
+          {error && !auth.user && <Alert severity='error'>{error}</Alert>}
+          {auth.user && <Alert severity='success'>Already logged in</Alert>}
+          <form onSubmit={loginHandler}>
+            <FormControl margin='normal'>
+              <TextField
+                label='Email'
+                type='email'
+                name='email'
+                id='email'
+                value={email}
+                helperText={focusedEmail && !email && 'this field is required'}
+                onBlur={() => setFocusedEmail(true)}
+                onChange={event => setEmail(event.target.value)}
+                required
+              />
+            </FormControl>
+            <FormControl margin='normal'>
+              <TextField
+                label='Password'
+                type='password'
+                name='password'
+                id='password'
+                value={password}
+                helperText={
+                  focusedPassword && !password && 'this field is required'
+                }
+                onBlur={() => setFocusedPassword(true)}
+                onChange={event => setPassword(event.target.value)}
+                required
+              />
+            </FormControl>
 
-        <button type='submit'>Log In</button>
-      </form>
-      {/* {error && <h1>{error}</h1>} */}
+            <FormControl margin='normal'>
+              <Button type='submit' variant='contained' size='large'>
+                Log In
+              </Button>
+            </FormControl>
+          </form>
+          {!auth.user && (
+            <div className='login__link'>
+              Need an account? <Link to='/signup'>Sign Up</Link>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

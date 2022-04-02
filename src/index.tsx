@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { ProvideAuth } from './context/use-auth.js';
+import { ProvideAuth } from './context/auth.js';
 
 ReactDOM.render(
   <React.StrictMode>
