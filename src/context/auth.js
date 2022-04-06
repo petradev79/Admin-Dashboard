@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext } from 'react';
-import { initializeApp } from 'firebase/app';
+// import { initializeApp } from 'firebase/app';
 import {
   getAuth,
   onAuthStateChanged,
@@ -7,14 +7,13 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore, collection } from '@firebase/firestore';
-import { firebaseConfig } from '../firebase/config';
+import { getFirestore, doc, setDoc } from '@firebase/firestore';
+import { app } from '../firebase/config';
 
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const authContext = createContext();
 const db = getFirestore();
-const usersRef = collection(db, 'users');
 
 export const useAuth = () => {
   return useContext(authContext);
@@ -22,47 +21,32 @@ export const useAuth = () => {
 
 export const ProvideAuth = ({ children }) => {
   const [user, setUser] = useState(null);
+  console.log(user);
 
-  const login = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password).then(response => {
-      setUser(response.user);
-      return response.user;
-    });
+  const login = async (email, password) => {
+    const response = await signInWithEmailAndPassword(auth, email, password);
+    setUser(response.user);
+    return response.user;
   };
-  const signup = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password).then(
-      response => {
-        db.collection('users').doc(response.user.uid).set({
-          name: 'test',
-        });
-        console.log(response.user.uid);
 
-        setUser(response.user);
-        return response.user;
-      }
+  const signup = async account => {
+    const response = await createUserWithEmailAndPassword(
+      auth,
+      account.email,
+      account.password
     );
-  };
-  const signout = () => {
-    return signOut(auth).then(() => {
-      setUser(false);
+    setDoc(doc(db, 'users', response.user.uid), {
+      ...account,
+      address: `${account.address}, ${account.city}`,
     });
+    setUser(response.user);
+    return response.user;
   };
-  // const sendPasswordResetEmail = (email) => {
-  //   return firebase
-  //     .auth()
-  //     .sendPasswordResetEmail(email)
-  //     .then(() => {
-  //       return true;
-  //     });
-  // };
-  // const confirmPasswordReset = (code, password) => {
-  //   return firebase
-  //     .auth()
-  //     .confirmPasswordReset(code, password)
-  //     .then(() => {
-  //       return true;
-  //     });
-  // };
+
+  const signout = async () => {
+    await signOut(auth);
+    setUser(false);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -73,15 +57,13 @@ export const ProvideAuth = ({ children }) => {
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
   const value = {
     user,
     login,
     signup,
     signout,
-    // sendPasswordResetEmail,
-    // confirmPasswordReset,
   };
 
   return <authContext.Provider value={value}>{children}</authContext.Provider>;

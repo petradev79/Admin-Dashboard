@@ -1,13 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import { SidebarLinkType } from './Sidebar';
 
-const SidebarLink: React.FC<SidebarLinkType> = ({ title, path, Icon }) => {
+const SidebarLink: React.FC<SidebarLinkType> = ({
+  title,
+  path,
+  Icon,
+  onClick,
+}) => {
   return (
     <NavLink to={path} className={link => (link.isActive ? 'active' : '')}>
-      <li className='sidebar-link'>
+      <div className='sidebar-link' onClick={onClick}>
         {Icon}
         <span>{title}</span>
-      </li>
+      </div>
     </NavLink>
   );
 };

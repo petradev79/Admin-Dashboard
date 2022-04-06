@@ -9,33 +9,37 @@ import {
   Button,
   Alert,
 } from '@mui/material';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
 import './login.scss';
 
 type accountType = {
-  id: string;
   email: string;
   password: string;
   username: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
+  dateOfBirth: Date | null;
   avatar: string;
-  address?: string;
+  address: string;
+  city: string;
 };
 
 const Signup = () => {
   // const [email, setEmail] = useState<string>('');
   // const [password, setPassword] = useState<string>('');
+  // const ref = useRef();
   const [account, setAccount] = useState<accountType>({
-    id: '',
     email: '',
     password: '',
     username: '',
     firstName: '',
     lastName: '',
-    dateOfBirth: '',
+    dateOfBirth: null,
     avatar: '',
     address: '',
+    city: '',
   });
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -50,7 +54,7 @@ const Signup = () => {
     try {
       setError('');
       setLoading(true);
-      await auth.signup(account.email, account.password);
+      await auth.signup(account);
       navigate('/');
     } catch {
       setError('Failed to sign up');
@@ -58,11 +62,18 @@ const Signup = () => {
     setLoading(false);
   };
 
-  const logoutHandler = () => {
-    auth.signout();
-  };
-
   console.log(auth.user);
+
+  // const handleFileUpload = event => {
+  //   const files = Array.from(event.target.files);
+  //   const [file] = files;
+  //   // setAccount(() =>
+  //   setAccount({
+  //     ...account,
+  //     avatar: file,
+  //   });
+  //   // if (!!onChange) onChange({ target: { value: file } });
+  // };
 
   return (
     <div className='login'>
@@ -72,9 +83,7 @@ const Signup = () => {
         </Box>
       ) : (
         <div className='login__box base-component'>
-          <h2 onClick={logoutHandler} className='login__title'>
-            Sign Up
-          </h2>
+          <h2 className='login__title'>Sign Up</h2>
           {error && !auth.user && <Alert severity='error'>{error}</Alert>}
           {auth.user && <Alert severity='success'>Already signup in</Alert>}
           <form onSubmit={loginHandler}>
@@ -82,8 +91,8 @@ const Signup = () => {
               <TextField
                 label='Email'
                 type='email'
-                name='email'
                 id='email'
+                name='email'
                 value={account.email}
                 helperText={
                   focusedEmail && !account.email && 'this field is required'
@@ -102,6 +111,7 @@ const Signup = () => {
               <TextField
                 label='Password'
                 id='password'
+                name='password'
                 value={account.password}
                 helperText={
                   focusedPassword &&
@@ -123,6 +133,7 @@ const Signup = () => {
                 label='Username'
                 type='text'
                 id='username'
+                name='username'
                 value={account.username}
                 onChange={event =>
                   setAccount({
@@ -138,6 +149,7 @@ const Signup = () => {
                 label='First Name'
                 type='text'
                 id='firstName'
+                name='firstName'
                 value={account.firstName}
                 onChange={event =>
                   setAccount({
@@ -152,6 +164,7 @@ const Signup = () => {
                 label='Last Name'
                 type='text'
                 id='lastName'
+                name='lastName'
                 value={account.lastName}
                 onChange={event =>
                   setAccount({
@@ -162,11 +175,54 @@ const Signup = () => {
               />
             </FormControl>
             <FormControl margin='normal'>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  // sx={{ fontSize: 20 }}
+                  // sx={{ fontSize: '1.6rem' }}
+                  label='Date of Birth'
+                  orientation='portrait'
+                  // views={['year', 'month', 'day']}
+                  value={account.dateOfBirth}
+                  onChange={newValue =>
+                    setAccount({
+                      ...account,
+                      dateOfBirth: newValue,
+                    })
+                  }
+                  renderInput={params => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </FormControl>
+            <FormControl margin='normal'>
+              {/* <input
+                ref={ref}
+                type='file'
+                accept='image/*'
+                name='avatar'
+                hidden
+                onChange={event =>
+                  setAccount({
+                    ...account,
+                    [event.target.name]: event.target.files[0],
+                  })
+                }
+              /> */}
+              <input type='file' hidden />
               <TextField
-                label='Date of avatar'
+                label='Choose file'
+                // type='file'
+                // id='avatar'
+                name='avatar'
+                // value={account.avatar?.name || ''}
+              />
+            </FormControl>
+            <FormControl margin='normal'>
+              <TextField
+                label='Address'
                 type='text'
-                id='avatar'
-                value={account.avatar}
+                id='address'
+                name='address'
+                value={account.address}
                 onChange={event =>
                   setAccount({
                     ...account,
@@ -177,24 +233,11 @@ const Signup = () => {
             </FormControl>
             <FormControl margin='normal'>
               <TextField
-                label='Date of Birth'
+                label='City'
                 type='text'
-                id='dateOfBirth'
-                value={account.dateOfBirth}
-                onChange={event =>
-                  setAccount({
-                    ...account,
-                    [event.target.name]: event.target.value,
-                  })
-                }
-              />
-            </FormControl>
-            <FormControl margin='normal'>
-              <TextField
-                label='Date of Birth'
-                type='text'
-                id='dateOfBirth'
-                value={account.dateOfBirth}
+                id='city'
+                name='city'
+                value={account.city}
                 onChange={event =>
                   setAccount({
                     ...account,

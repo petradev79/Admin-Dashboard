@@ -1,4 +1,4 @@
-// import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 // import { getAuth } from 'firebase/auth';
 // import { getAnalytics } from 'firebase/analytics';
 // import { getFirestore, collection } from '@firebase/firestore';
@@ -13,7 +13,7 @@ export const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-// const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 // export const auth = getAuth(app);
 // export const analytics = getAnalytics(app);
 // export const db = getFirestore();

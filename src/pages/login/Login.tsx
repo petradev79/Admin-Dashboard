@@ -31,15 +31,14 @@ const Login = () => {
       navigate('/');
     } catch {
       setError('Failed to log in');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const logoutHandler = () => {
     auth.signout();
   };
-
-  console.log(auth.user);
 
   return (
     <div className='login'>

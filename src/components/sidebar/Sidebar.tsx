@@ -1,4 +1,6 @@
-// import { Link } from 'react-router-dom';
+// import { Link, NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/auth';
+
 import SidebarLink from './SidebarLink';
 import { SvgIconProps } from '@mui/material';
 import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
@@ -19,6 +21,7 @@ export type SidebarLinkType = {
   title: string;
   path: string;
   Icon: SvgIconProps<'svg', {}>;
+  onClick?: () => any | undefined;
 };
 
 const sidebarLinks = [
@@ -33,7 +36,7 @@ const sidebarLinks = [
       {
         linkTitle: 'Invoice',
         icon: <HomeWorkOutlinedIcon />,
-        linkPath: '',
+        linkPath: '/invoice',
       },
     ],
   },
@@ -105,16 +108,13 @@ const sidebarLinks = [
         icon: <AccountCircleOutlinedIcon />,
         linkPath: '',
       },
-      {
-        linkTitle: 'Logout',
-        icon: <ExitToAppOutlinedIcon />,
-        linkPath: '',
-      },
     ],
   },
 ];
 
 const Sidebar: React.FC = () => {
+  const auth = useAuth();
+
   return (
     <aside className='sidebar'>
       <div className='sidebar__top'>
@@ -135,6 +135,18 @@ const Sidebar: React.FC = () => {
               ))}
             </div>
           ))}
+          <a href='/' className='link'>
+            <div
+              className='sidebar-link'
+              onClick={() => {
+                auth.signout();
+              }}
+            >
+              <ExitToAppOutlinedIcon />
+              <span>Logout</span>
+            </div>
+          </a>
+          {/* ); */}
         </ul>
       </div>
       {/* <div className='sidebar__bottom'>
