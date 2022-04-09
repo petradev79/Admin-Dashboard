@@ -28,16 +28,12 @@ const Login = () => {
       setError('');
       setLoading(true);
       await auth.login(email, password);
+      setLoading(false);
       navigate('/');
     } catch {
       setError('Failed to log in');
-    } finally {
       setLoading(false);
     }
-  };
-
-  const logoutHandler = () => {
-    auth.signout();
   };
 
   return (
@@ -48,9 +44,7 @@ const Login = () => {
         </Box>
       ) : (
         <div className='login__box base-component'>
-          <h2 onClick={logoutHandler} className='login__title'>
-            Log In
-          </h2>
+          <h2 className='login__title'>Log In</h2>
           {error && !auth.user && <Alert severity='error'>{error}</Alert>}
           {auth.user && <Alert severity='success'>Already logged in</Alert>}
           <form onSubmit={loginHandler}>

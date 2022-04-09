@@ -12,7 +12,7 @@ import Login from './pages/login/Login';
 import New from './pages/new/New';
 import Single from './pages/single/Single';
 import './styles/main.scss';
-import PrivateRoute from './helper/PrivateRoute';
+import { PrivateRoute } from './helper/PrivateRoute';
 import Signup from './pages/login/Signup';
 
 // type transactionType = {
@@ -38,33 +38,6 @@ import Signup from './pages/login/Signup';
 // };
 
 const App = () => {
-  // const auth = useAuth();
-  // const [transactions, setTransactions] = useState<transactionType[]>([]);
-
-  // const login = async () => {};
-
-  // const logout = async () => {};
-
-  // const transactionsCollectionRef = collection(db, 'transactions');
-
-  // useEffect(() => {
-  //   const getTransactions = async () => {
-  //     const data = await getDocs(transactionsCollectionRef);
-  //     setTransactions(
-  //       data?.docs.map((doc: { data: () => any; id: string }) => ({
-  //         ...doc.data(),
-  //         id: doc.id,
-  //       }))
-  //     );
-  //   };
-  //   try {
-  //     getTransactions();
-  //   } catch (err: any) {
-  //     console.log(err.message);
-  //   }
-  // }, []);
-  // console.log(transactions);
-
   return (
     <div className='app'>
       <BrowserRouter>
@@ -140,22 +113,6 @@ const App = () => {
         </div>
       </BrowserRouter>
     </div>
-    // <div className='app'>
-    //   <BrowserRouter>
-    //     <Routes>
-    //       <Route
-    //         path='/'
-    //         element={
-    //           <PrivateRoute>
-    //             <Home />
-    //           </PrivateRoute>
-    //         }
-    //       />
-    //       <Route path='/login' element={<Login />} />
-    //       <Route path='/signup' element={<Signup />} />
-    //     </Routes>
-    //   </BrowserRouter>
-    // </div>
   );
 };
 

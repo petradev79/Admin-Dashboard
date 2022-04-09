@@ -1,7 +1,7 @@
 @import '../../styles/variables.module.scss';
 
 .login {
-  min-height: 100vh;
+  min-height: calc(100vh - 6rem);
   display: grid;
   place-items: center;
   background-color: $color-grey-light;
