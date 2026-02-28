@@ -60,3 +60,28 @@ h2 {
   font-weight: bold;
   color: $color-text-dark;
 }
+
+// MUI
+.MuiAlert-message {
+  font-size: 1.4rem;
+}
+
+.MuiFormControl-root .MuiOutlinedInput-root {
+  // color: $color-text-light;
+  font-size: 1.4rem;
+  width: 100%;
+}
+
+.MuiFormControl-root .MuiInputLabel-root {
+  font-size: 1.4rem;
+  color: $color-text;
+}
+
+.MuiFormControl-root .MuiButton-root {
+  font-size: 1.4rem;
+}
+
+.MuiFormControl-root .MuiFormHelperText-root {
+  font-size: 1.2rem;
+  color: $color-danger;
+}

@@ -9,11 +9,12 @@ import {
   Button,
   Alert,
 } from '@mui/material';
-import './login.scss';
+import './auth.scss';
 
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [focusedEmail, setFocusedEmail] = useState(false);
@@ -21,38 +22,40 @@ const Login = () => {
   const navigate = useNavigate();
   const auth = useAuth();
 
-  const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const signupHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (password !== passwordConfirm) {
+      return setError('Passwords do not match');
+    }
 
     try {
       setError('');
       setLoading(true);
-      await auth.login(email, password);
+      await auth.signup(email, password);
       setLoading(false);
-      navigate('/');
+      navigate('/profile');
     } catch {
-      setError('Failed to log in');
+      setError('Failed to create an account');
       setLoading(false);
     }
   };
 
   return (
-    <div className='login'>
+    <div className='auth'>
       {loading ? (
         <Box sx={{ width: '100%', marginBottom: 'auto' }}>
           <LinearProgress />
         </Box>
       ) : (
-        <div className='login__box base-component'>
-          <h2 className='login__title'>Log In</h2>
-          {error && !auth.user && <Alert severity='error'>{error}</Alert>}
-          {auth.user && <Alert severity='success'>Already logged in</Alert>}
-          <form onSubmit={loginHandler}>
-            <FormControl margin='normal'>
+        <div className='auth__box base-component'>
+          <h2 className='auth__title'>Sign Up</h2>
+          {error && <Alert severity='error'>{error}</Alert>}
+          <form onSubmit={signupHandler}>
+            <FormControl margin='normal' fullWidth>
               <TextField
                 label='Email'
                 type='email'
-                name='email'
                 id='email'
                 value={email}
                 helperText={focusedEmail && !email && 'this field is required'}
@@ -61,11 +64,10 @@ const Login = () => {
                 required
               />
             </FormControl>
-            <FormControl margin='normal'>
+            <FormControl margin='normal' fullWidth>
               <TextField
                 label='Password'
                 type='password'
-                name='password'
                 id='password'
                 value={password}
                 helperText={
@@ -76,16 +78,26 @@ const Login = () => {
                 required
               />
             </FormControl>
+            <FormControl margin='normal' fullWidth>
+              <TextField
+                label='Confirm Password'
+                type='password'
+                id='passwordConfirm'
+                value={passwordConfirm}
+                onChange={event => setPasswordConfirm(event.target.value)}
+                required
+              />
+            </FormControl>
 
-            <FormControl margin='normal'>
+            <FormControl margin='normal' fullWidth>
               <Button type='submit' variant='contained' size='large'>
-                Log In
+                Sign Up
               </Button>
             </FormControl>
           </form>
           {!auth.user && (
-            <div className='login__link'>
-              Need an account? <Link to='/signup'>Sign Up</Link>
+            <div className='auth__link'>
+              Already have an account? <Link to='/login'>Log In</Link>
             </div>
           )}
         </div>
@@ -94,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

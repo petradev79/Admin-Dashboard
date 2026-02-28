@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { doc, setDoc } from '@firebase/firestore';
+// import { doc, setDoc } from '@firebase/firestore';
 import { auth, db } from '../firebase/config';
 
 const authContext = createContext();
@@ -23,19 +23,23 @@ export const ProvideAuth = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const signup = async account => {
-    const response = await createUserWithEmailAndPassword(
-      auth,
-      account.email,
-      account.password
-    );
-    setDoc(doc(db, 'users', response.user.uid), {
-      ...account,
-      address: `${account.address}, ${account.city}`,
-    });
-    setUser(response.user);
-    return response.user;
+  const signup = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
   };
+
+  // const signup = async account => {
+  //   const response = await createUserWithEmailAndPassword(
+  //     auth,
+  //     account.email,
+  //     account.password
+  //   );
+  //   setDoc(doc(db, 'users', response.user.uid), {
+  //     ...account,
+  //     address: `${account.address}, ${account.city}`,
+  //   });
+  //   setUser(response.user);
+  //   return response.user;
+  // };
 
   const signout = () => {
     return signOut(auth);

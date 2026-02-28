@@ -106,7 +106,7 @@ const sidebarLinks = [
       {
         linkTitle: 'Profile',
         icon: <AccountCircleOutlinedIcon />,
-        linkPath: '',
+        linkPath: 'profile',
       },
     ],
   },

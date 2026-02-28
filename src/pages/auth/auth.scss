@@ -1,0 +1,30 @@
+@import '../../styles/variables.module.scss';
+
+.auth {
+  min-height: calc(100vh - 6rem);
+  display: grid;
+  place-items: center;
+  background-color: $color-grey-light;
+
+  &__box {
+    width: 50rem;
+    padding: 4rem 2rem;
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 4.2rem;
+    font-weight: 600;
+  }
+
+  &__link {
+    text-align: center;
+    margin-top: 2rem;
+    cursor: pointer;
+  }
+
+  input {
+    cursor: pointer;
+  }
+}

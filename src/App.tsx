@@ -4,16 +4,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // import { db } from './firebase/firebase-config';
 // import { collection, getDocs } from '@firebase/firestore';
-import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/sidebar/Sidebar';
+import Navbar from './components/navbar/Navbar';
+import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
+import Profile from './pages/profile/Profile';
 import Home from './pages/home/Home';
 import List from './pages/list/List';
-import Login from './pages/login/Login';
 import New from './pages/new/New';
 import Single from './pages/single/Single';
-import './styles/main.scss';
 import { PrivateRoute } from './helper/PrivateRoute';
-import Signup from './pages/login/Signup';
+import './styles/main.scss';
 
 // type transactionType = {
 //   id: string;
@@ -55,7 +56,7 @@ const App = () => {
                 }
               />
               <Route path='login' element={<Login />} />
-              <Route path='/signup' element={<Signup />} />
+              <Route path='signup' element={<Signup />} />
               <Route path='users'>
                 <Route
                   index
@@ -108,6 +109,14 @@ const App = () => {
                   }
                 />
               </Route>
+              <Route
+                path='profile'
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                }
+              />
             </Route>
           </Routes>
         </div>
